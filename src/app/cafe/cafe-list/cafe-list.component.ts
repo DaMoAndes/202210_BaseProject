@@ -4,14 +4,13 @@ import { CafeService } from '../services/cafe.service';
 @Component({
   selector: 'app-cafe-detail',
   templateUrl: './cafe-list.component.html',
-  styleUrls: ['./cafe-list.component.css']
+  styleUrls: ['./cafe-list.component.css'],
 })
 export class CafeListComponent implements OnInit {
   cafes: Array<Cafe> = [];
   Cafeblend: Array<Cafe> = [];
   CafeOrigen: Array<Cafe> = [];
-  constructor(
-    private cafeService: CafeService) { }
+  constructor(private cafeService: CafeService) {}
 
   getCafes(): void {
     this.cafeService.getCafes().subscribe((cafes) => {
@@ -24,18 +23,17 @@ export class CafeListComponent implements OnInit {
     this.FilterCafes();
   }
 
-  FilterCafes(): void{
-    this.cafeService.getCafes().subscribe((searchcafes) =>{
+  FilterCafes(): void {
+    this.cafeService.getCafes().subscribe((searchcafes) => {
       for (let i = 0; i < searchcafes.length; i++) {
-        if(searchcafes[i].tipo == 'Blend'){
-         this.Cafeblend.push(searchcafes[i]);
-        } else{
-          if(searchcafes[i].tipo == 'Café de Origen'){
+        if (searchcafes[i].tipo == 'Blend') {
+          this.Cafeblend.push(searchcafes[i]);
+        } else {
+          if (searchcafes[i].tipo == 'Café de Origen') {
             this.CafeOrigen.push(searchcafes[i]);
           }
         }
       }
     });
   }
-
 }
